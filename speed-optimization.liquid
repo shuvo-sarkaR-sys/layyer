@@ -1,0 +1,27 @@
+{% if shop.metafields.speed_optimization.enabled %}
+  <script>
+    (function() {
+      // Defer non-essential scripts and optimize page load
+
+      const lazyScripts = [
+        "https://www.googletagmanager.com/gtag/js?id=UA-XXXXXXX-X",
+        "https://www.google-analytics.com/analytics.js"
+      ];
+
+      function loadScripts() {
+        lazyScripts.forEach(src => {
+          let script = document.createElement("script");
+          script.src = src;
+          script.async = true;
+          document.head.appendChild(script);
+        });
+        console.log("Lazy-loaded third-party scripts!");
+      }
+
+      // Load scripts only when user interacts (scroll, click, etc.)
+      window.addEventListener("scroll", loadScripts, { once: true });
+      window.addEventListener("mousemove", loadScripts, { once: true });
+      window.addEventListener("touchstart", loadScripts, { once: true });
+    })();
+  </script>
+{% endif %}
